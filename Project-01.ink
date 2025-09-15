@@ -46,7 +46,12 @@ You hit an amazing workout and are now quite stronger.
         * [Recieve your praise] -> loser
     - not grab_head:
         {beginning > 1:What else would you like to do before night? |Villager: We have been experiencing many odd occurences which can only be explained by a mysterious creature. We believe this creature only comes out at night. I suggest you wait until night to search for clues.}
-        + {strength < 5} [Grow Stronger] -> stronger
+        {
+            -strength < 3:
+                +  [Grow Stronger] -> stronger
+            -(strength < 5 && (blacksmith.sword or blacksmith.armor)):
+                +  [Grow Stronger] -> stronger
+        }
         + [Explore the Village] -> village
         + [Visit the blacksmith] -> blacksmith
         * [Wait until Dark] -> night_village
